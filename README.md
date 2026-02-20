@@ -1,67 +1,62 @@
 # Overlay Marker
-Un outil de marquage visuel pour écran qui permet d'annoter n'importe quelle application en surimpression.
+
+A fullscreen visual overlay tool for annotating any application in real time.
 
 ## Description
-Ce programme crée une couche transparente en plein écran sur laquelle vous pouvez placer des marqueurs numérotés. Il est utile pour :
-- Marquer des points d'intérêt sur des captures d'écran
-- Annoter des présentations en direct
-Identifier des zones spécifiques dans des applications
-- Créer des repères temporaires sur l'écran
 
+The program creates a transparent fullscreen layer that allows placement of sequentially numbered markers.
 
-## Prérequis
-- Python 3.12
-- Système Linux (testé sur Ubuntu/Debian)
-- Droits sudo (nécessaire pour capturer les événements clavier système)
+Use cases:
+
+* Marking points of interest on screen captures
+* Annotating live presentations
+* Identifying specific interface regions
+* Creating temporary visual references
+
+## Requirements
+
+* Python 3.12
+* Linux (tested on Ubuntu/Debian)
+* `sudo` privileges (required for system-level keyboard capture)
 
 ## Installation
-Créez un environnement virtuel et installez les dépendances :
 
-```py
+```bash
 python3 -m venv venv
 source venv/bin/activate
 pip install PyQt5 pynput keyboard evdev
 ```
 
-## Utilisation
-Lancez le programme avec les droits sudo :
+## Execution
 
-```py
+```bash
 sudo ./venv/bin/python3 main.py
 ```
 
-## Raccourcis clavier
-- **Clic droit** : Ajouter un marqueur numéroté à la position du curseur
-- **F9** : Basculer entre premier plan (marquage actif) et arrière-plan (interaction avec les applications)
-- **Espace** : Effacer tous les marqueurs (uniquement en mode premier plan)
-- **Échap** : Quitter l'application
+## Controls
 
-## Modes de fonctionnement
+* **Right click**: Add a numbered marker at cursor position
+* **F9**: Toggle foreground/background mode
+* **Space**: Clear all markers (foreground mode only)
+* **Esc**: Exit
 
-### Mode premier plan (par défaut)
+## Operating Modes
 
-- La couche est visible avec une teinte bleue légère
-- Vous pouvez placer des marqueurs
-- Les clics sont interceptés par l'overlay
+### Foreground mode (default)
 
-### Mode arrière-plan
+* Semi-transparent blue overlay
+* Mouse events intercepted
+* Marker placement enabled
 
-- La couche passe derrière avec une teinte rouge légère
-- Les marqueurs restent visibles
-- Vous pouvez interagir normalement avec vos applications
+### Background mode
 
-## Dépendances
+* Semi-transparent red overlay
+* Events passed to underlying applications
+* Markers remain visible
 
-Les packages Python suivants sont requis (voir requirements.txt si vous en créez un) :
+## Dependencies
 
-- **PyQt5** : Interface graphique et rendu
-- **pynput** : Capture des événements souris
-- **keyboard** : Capture des événements clavier système
-- **evdev** : Support des périphériques d'entrée sous Linux
-
-## Notes techniques
-
-- Le programme utilise Qt pour créer une fenêtre transparente en plein écran
-- Les événements souris et clavier sont capturés au niveau système
-- Les marqueurs sont dessinés avec des cercles jaunes numérotés séquentiellement
-- L'application doit être lancée avec sudo pour capturer les événements clavier système
+* PyQt5: GUI and rendering
+* pynput: Mouse event capture
+* keyboard: System-level keyboard capture
+* evdev: Linux input device interface
